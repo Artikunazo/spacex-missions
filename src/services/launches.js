@@ -1,11 +1,12 @@
-import config from '../config/config';
+import React from 'react';
+import './style.css';
+import launches
 
-export async function getAllLaunches () {
-  try {
-    const response = await fetch(config.api);
-    const data = await response.json();
-    return data;
-  } catch (error) {
-    console.error(error);
-  }
+export default function App() {
+  return (
+    <div>
+      <h1>Hello StackBlitz!</h1>
+      <p>Start editing to see some magic happen :)</p>
+    </div>
+  );
 }

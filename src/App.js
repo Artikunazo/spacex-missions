@@ -1,5 +1,6 @@
 import React from 'react';
 import './style.css';
+import getAllLaunches from './services/launches';
 
 export default function App() {
   return (
