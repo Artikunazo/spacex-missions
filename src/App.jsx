@@ -14,11 +14,13 @@ export default function App() {
     <>
       <h1>SpaceX Launches</h1>
       <section>
-        {
-          launches.map(launch => {
-            
-          })
-        }
+        <ul>
+          {launches?.map((launch) => (
+            <li key={launch.fight_number}>
+              {launch.mission_name} ({launch.launch_year})
+            </li>
+          ))}
+        </ul>
       </section>
     </>
   );
