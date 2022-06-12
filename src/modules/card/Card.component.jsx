@@ -14,7 +14,7 @@ export default function Card ({
         <div className="card-body">
           <h3 classNames="card-title">
             {missionName} ({missionDate})
-            <small>Flight # {flightNumber} </small>
+            <small> Flight # {flightNumber} </small>
           </h3>
         </div>
       </div>
