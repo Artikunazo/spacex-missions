@@ -1,4 +1,6 @@
-import './card.css';
+import React from 'react';
+import './Card.component.css';
+
 
 export default function Card ({
   flightNumber,
@@ -12,7 +14,7 @@ export default function Card ({
         <div className="card-body">
           <h3>
             {missionName} ({missionDate})
-            <small>Flight # {flightNumbe} </small>
+            <small>Flight # {flightNumber} </small>
           </h3>
         </div>
       </div>
