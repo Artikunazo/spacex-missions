@@ -12,6 +12,7 @@ export default function Card ({
         <div className="card-body">
           <h3>
             {missionName} ({missionDate})
+            <small>Flight # {flightNumbe} </small>
           </h3>
         </div>
       </div>
