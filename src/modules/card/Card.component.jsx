@@ -1,3 +1,10 @@
 import './card.css';
 
-class Car
+export default function Card ({
+  flightNumber,
+  missionName,
+  missionDate,
+  ...props
+}) {
+  
+}
