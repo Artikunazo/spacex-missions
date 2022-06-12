@@ -1,4 +1,4 @@
-import config from '../config/config';
+import * as config from '../config/config';
 
 export async function getAllLaunches () {
   try {
