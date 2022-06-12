@@ -1,7 +1,6 @@
 import React from 'react';
 import './Card.component.css';
 
-
 export default function Card ({
   flightNumber,
   missionName,
@@ -10,7 +9,7 @@ export default function Card ({
 }) {
   return (
     <>
-      <div className="card">
+      <div className="card py-2">
         <div className="card-body">
           <h3 classNames="card-title">
             {missionName} ({missionDate})

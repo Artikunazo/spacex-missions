@@ -19,7 +19,8 @@ export default function App() {
         <div className="row">
           <div className="col">
             {launches.map((launch) => (
-              <div key={launch.flight_number}>
+              <div key={launch.flight_number}
+              className="py-2">
                 <Card 
                   flightNumber={launch.flight_number}
                   missionName={launch.mission_name}
