@@ -21,7 +21,7 @@ export default function App() {
             {launches.map((launch) => (
               <div key={launch.flight_number}>
                 <Card 
-                  flightNumbert={launch.flight_number}
+                  flightNumber={launch.flight_number}
                   missionName={launch.mission_name}
                   missionDate={launch.launch_year}
                 />
