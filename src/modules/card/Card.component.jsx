@@ -6,5 +6,9 @@ export default function Card ({
   missionDate,
   ...props
 }) {
-  
+  return (
+    <>
+      
+    </>
+  )
 }
