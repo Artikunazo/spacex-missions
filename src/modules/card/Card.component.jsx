@@ -1,3 +1,3 @@
 import './card.css';
 
-class Card
+class Car
