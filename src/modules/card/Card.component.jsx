@@ -10,7 +10,9 @@ export default function Card ({
     <>
       <div className="card">
         <div className="card-body">
-          
+          <h3>
+            {missionNam} ({missionDate})
+          </h3>
         </div>
       </div>
     </>
