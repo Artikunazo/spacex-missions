@@ -3,7 +3,6 @@ import { useState, useEffect } from 'react';
 import './style.css';
 import * as API from './services/launches';
 import Card from './modules/card/Card.component';
-import { distanceAndSkiddingToXY } from '@popperjs/core/lib/modifiers/offset';
 
 export default function App() {
   const [launches, setLaunches] = useState([]);
