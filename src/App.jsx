@@ -7,7 +7,7 @@ export default function App() {
   const [launches, setLaunches] = useState([]);
 
   useEffect(() => {
-    API.getAllLaunches().then(setLaunches);
+    API.getAllLaunches().then(setLaunches)
   }, []);
 
   return (
@@ -16,7 +16,7 @@ export default function App() {
       <section>
         <ul>
           {launches?.map((launch) => (
-            <li key={launch.fight_number}>
+            <li key={launch.flight_number}>
               {launch.mission_name} ({launch.launch_year})
             </li>
           ))}
