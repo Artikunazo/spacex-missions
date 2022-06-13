@@ -10,7 +10,7 @@ export default function Card ({
 }) {
   return (
     <>
-      <div className="card">
+      <div className="card px-2 py-2">
         <div className="card-content">
           <h3 className="card-title">
             {missionName} ({missionDate})

@@ -14,13 +14,13 @@ export default function App() {
   return (
     <>
       <h1>SpaceX Launches</h1>
-      <section className="container-fluid 
+      <section className="container is-widescreen 
       ">
-        <div className="row">
-          <div className="col">
+        <div className="columns">
+          <div className="column">
             {launches.map((launch) => (
               <div key={launch.flight_number}
-              className="py-2">
+              className="py-2 px-2">
                 <Card 
                   flightNumber={launch.flight_number}
                   missionName={launch.mission_name}
