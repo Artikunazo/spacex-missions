@@ -16,7 +16,7 @@ export default function Card ({
             {missionName} ({missionDate})
             <small> Flight # {flightNumber} </small>
           </h3>
-          <span>{launchSuccess ? 'Success' : 'Failure'}</span>
+          <span className={launchSuccessh ? "green accent-3" : "red lighten-3"}>{launchSuccess ? 'Success' : 'Failure'}</span>
         </div>
         <div className="card-action">
           <a href="#">View details</a>
