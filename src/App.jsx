@@ -25,7 +25,7 @@ export default function App() {
                   flightNumber={launch.flight_number}
                   missionName={launch.mission_name}
                   missionDate={launch.launch_year}
-                  launchSucces={launch.launch_success}
+                  launchSuccess={launch.launch_success}
                 />
               </div>
             ))}
