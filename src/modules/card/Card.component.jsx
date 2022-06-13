@@ -24,7 +24,7 @@ export default function Card({
         </div>
         <div className="card-footer">
           <a href="#" className="card-footer-item">See rocket</a>
-          <a className="card-footer-item">See details</a>
+          <a className="card-footer-item">More details</a>
         </div>
       </div>
     </>
