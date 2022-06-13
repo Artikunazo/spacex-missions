@@ -13,7 +13,7 @@ export default function App() {
 
   return (
     <>
-      <h1>SpaceX Launches</h1>
+      <h1 className="title is-1">SpaceX Launches</h1>
       <section className="container is-widescreen 
       ">
         <div className="columns">

@@ -1,7 +1,7 @@
 import React from 'react';
 import './Card.component.css';
 
-export default function Card ({
+export default function Card({
   flightNumber,
   missionName,
   missionDate,
@@ -12,17 +12,21 @@ export default function Card ({
     <>
       <div className="card px-2 py-2">
         <div className="card-content">
-          <h3 className="card-title">
-            {missionName} ({missionDate})
-            <small> Flight # {flightNumber} </small>
+          <h3 className="card-title is-flex is-justify-content-space-around">
+            <span>{missionName} ({missionDate})</span>
+            &nbsp;
+            <span
+              className={` ${launchSuccess ? 'tag is-success' : 'tag is-danger'}`}
+            >
+              {launchSuccess ? 'Success' : 'Failure'}
+            </span>
           </h3>
-          
-          <span className={launchSuccess ? "tag is-success" : "tag is-danger"}>{launchSuccess ? 'Success' : 'Failure'}</span>
         </div>
-        <div className="card-action">
-          <a href="#">See rocket</a>
+        <div className="card-footer">
+          <a href="#" className="card-footer-item">See rocket</a>
+          <a className="card-footer-item">See details</a>
         </div>
       </div>
     </>
-  )
+  );
 }
