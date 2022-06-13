@@ -16,6 +16,9 @@ export default function Card ({
             <small> Flight # {flightNumber} </small>
           </h3>
         </div>
+        <div className="card-action">
+          <a href="#">View details</a>
+        </div>
       </div>
     </>
   )
