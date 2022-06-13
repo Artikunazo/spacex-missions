@@ -19,7 +19,7 @@ export default function Card ({
           <span className="successFlag"  className={launchSuccess ? "green accent-3" : "red lighten-3"}>{launchSuccess ? 'Success' : 'Failure'}</span>
         </div>
         <div className="card-action">
-          <a href="#">View details</a>
+          <a href="#">See rocket</a>
         </div>
       </div>
     </>
