@@ -14,7 +14,7 @@ export default function App() {
   return (
     <>
       <h1 className="title is-1">SpaceX Launches</h1>
-      <section className="container is-widescreen 
+      <section className="container
       ">
         <div className="columns">
           <div className="column">
