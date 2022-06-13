@@ -17,7 +17,7 @@ export default function Card ({
             <small> Flight # {flightNumber} </small>
           </h3>
           
-          <span className="tag"  className={launchSuccess ? "is-success" : "is-danger"}>{launchSuccess ? 'Success' : 'Failure'}</span>
+          <span className={launchSuccess ? "tag is-success" : "tag is-danger"}>{launchSuccess ? 'Success' : 'Failure'}</span>
         </div>
         <div className="card-action">
           <a href="#">See rocket</a>
