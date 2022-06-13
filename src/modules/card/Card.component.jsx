@@ -9,8 +9,8 @@ export default function Card ({
 }) {
   return (
     <>
-      <div className="card py-2">
-        <div className="card-body">
+      <div className="card">
+        <div className="card-content">
           <h3 classNames="card-title">
             {missionName} ({missionDate})
             <small> Flight # {flightNumber} </small>
