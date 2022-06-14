@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import Card from './modules/card/Card.component';
-import * as API from './services/launches';
+import Card from '../card/Card.component';
+import * as API from '../../services/launches';
 
 export default function LaunchesList() {
   const [launches, setLaunches] = useState([]);

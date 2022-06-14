@@ -1,6 +1,5 @@
 import React from 'react';
 import { Routes, Route, Link } from 'react-router-dom';
-import MoreDetails from '../more-details/MoreDetails.component';
 
 export default function Card({
   flightNumber,

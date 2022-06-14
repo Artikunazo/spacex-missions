@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import * as API from '../../services/launches';
+import { useParams } from 'react-router-dom';
 
-export default function MoreDetails({ flightNumber, ...props }) {
+export default function LaunchDetails({ flightNumber, ...props }) {
   const [launchDetails, setLaunchDetails] = useState();
 
   useEffect(() => {
