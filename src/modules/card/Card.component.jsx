@@ -28,7 +28,9 @@ export default function Card({
           </h3>
         </div>
         <div className="card-footer">
-          <Link to="flight">More details</Link>
+          <Link to={`/flight/${flightNumber}`} className="card-footer-item">
+            More details
+          </Link>
         </div>
       </div>
     </>
