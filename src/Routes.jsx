@@ -8,7 +8,7 @@ export default function Routes() {
     <>
       <Routes>
         <Route path="/" element={<LaunchesList />} />
-        <Route path="/flight/:number" element={<LaunchDetails />} />
+        <Route path="/flight/:launchId" element={<LaunchDetails />} />
       </Routes>
     </>
   );
