@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import * as API from '../../services/launches';
 import { useParams } from 'react-router-dom';
 
-export default function LaunchDetails() {
+export default function LaunchDetails({...props}) {
   const { launchId } = useParams();
   const [launchDetails, setLaunchDetails] = useState({});
 
@@ -33,8 +33,7 @@ export default function LaunchDetails() {
           </div>
 
           <div className="content">
-            <p>Launch year: {launchDetails.launch_year}</p>
-            <p>{launchDetails.details}</p>
+            <p>{ launchDetails.launch_date_local}</p>
           </div>
         </div>
       </section>
