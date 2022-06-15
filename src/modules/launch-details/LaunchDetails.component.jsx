@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import * as API from '../../services/launches';
 import { useParams } from 'react-router-dom';
+import { format } from 'date-fns';
+import { locale } from 'date-fns/locale';
 
-export default function LaunchDetails({...props}) {
+export default function LaunchDetails({ ...props }) {
   const { launchId } = useParams();
   const [launchDetails, setLaunchDetails] = useState({});
 
@@ -33,7 +35,11 @@ export default function LaunchDetails({...props}) {
           </div>
 
           <div className="content">
-            <p>{ launchDetails.launch_date_local}</p>
+            <p>
+              {format(new Date(launchDetails.launch_date_local), 'P', {
+                locale: locale.enEN,
+              })}
+            </p>
           </div>
         </div>
       </section>
