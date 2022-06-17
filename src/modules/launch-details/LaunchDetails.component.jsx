@@ -120,30 +120,44 @@ export default function LaunchDetails({ ...props }) {
                   ) : (
                     ''
                   )}
-                  <a
-                    href={reddit_launch}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="tag is-link"
-                  >
-                    Launch
-                  </a>
-                  <a
-                    href={reddit_media}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="tag is-link"
-                  >
-                    Media
-                  </a>
-                  <a
-                    href={reddit_recovery}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="tag is-link"
-                  >
-                    Recovery
-                  </a>
+                  {reddit_launch ? (
+                    <a
+                      href={reddit_launch}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="tag is-link"
+                    >
+                      Launch
+                    </a>
+                  ) : (
+                    ''
+                  )}
+
+                  {reddit_media ? (
+                    <a
+                      href={reddit_media}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="tag is-link"
+                    >
+                      Media
+                    </a>
+                  ) : (
+                    ''
+                  )}
+
+                  {reddit_recovery ? (
+                    <a
+                      href={reddit_recovery}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="tag is-link"
+                    >
+                      Recovery
+                    </a>
+                  ) : (
+                    ''
+                  )}
                 </div>
               </div>
             ) : (
