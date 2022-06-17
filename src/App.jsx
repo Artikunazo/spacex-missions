@@ -2,7 +2,6 @@ import React from 'react';
 import './style.css';
 import Routes from './Routes';
 import { Link } from 'react-router-dom';
-import logo from './assets/spacex-logo.png';
 
 export default function App() {
   return (
@@ -12,8 +11,11 @@ export default function App() {
           <div className="hero-body">
             <p className="title">
               <Link to="/">
-                <figure className="image is-4by3">
-                  <img src={logo} alt="Placeholder image" />
+                <figure className="image">
+                  <img
+                    src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/de/SpaceX-Logo.svg/2560px-SpaceX-Logo.svg.png"
+                    alt="Placeholder image"
+                  />
                 </figure>
               </Link>
             </p>
