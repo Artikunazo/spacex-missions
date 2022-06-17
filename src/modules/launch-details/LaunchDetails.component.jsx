@@ -24,6 +24,7 @@ export default function LaunchDetails({ ...props }) {
     reddit_launch,
     reddit_media,
     reddit_recovery,
+    video_link,
   } = links || {};
 
   return (
@@ -60,7 +61,6 @@ export default function LaunchDetails({ ...props }) {
             {launch_failure_details?.reason
               ? `<p>Reason: ${launch_failure_details?.reason}</p>`
               : ''}
-            {console.log(links)}
             <div class="columns is-mobile">
               <div class="column is-flex is-justify-content-center">
                 <a
@@ -115,7 +115,15 @@ export default function LaunchDetails({ ...props }) {
                       rel="noopener noreferrer"
                       className={`tag is-link`}
                     >
-                      Campaign
+                      <span className="icon-text">
+                        <span>Campaign</span>
+                        <span className="icon">
+                          <i
+                            className="fa fa-external-link"
+                            aria-hidden="true"
+                          ></i>
+                        </span>
+                      </span>
                     </a>
                   ) : (
                     ''
@@ -127,7 +135,15 @@ export default function LaunchDetails({ ...props }) {
                       rel="noopener noreferrer"
                       className="tag is-link"
                     >
-                      Launch
+                      <span className="icon-text">
+                        <span>Launch</span>
+                        <span className="icon">
+                          <i
+                            className="fa fa-external-link"
+                            aria-hidden="true"
+                          ></i>
+                        </span>
+                      </span>
                     </a>
                   ) : (
                     ''
@@ -140,7 +156,15 @@ export default function LaunchDetails({ ...props }) {
                       rel="noopener noreferrer"
                       className="tag is-link"
                     >
-                      Media
+                      <span className="icon-text">
+                        <span>Media</span>
+                        <span className="icon">
+                          <i
+                            className="fa fa-external-link"
+                            aria-hidden="true"
+                          ></i>
+                        </span>
+                      </span>
                     </a>
                   ) : (
                     ''
@@ -153,7 +177,15 @@ export default function LaunchDetails({ ...props }) {
                       rel="noopener noreferrer"
                       className="tag is-link"
                     >
-                      Recovery
+                      <span className="icon-text">
+                        <span>Recovery</span>
+                        <span className="icon">
+                          <i
+                            className="fa fa-external-link"
+                            aria-hidden="true"
+                          ></i>
+                        </span>
+                      </span>
                     </a>
                   ) : (
                     ''
@@ -163,7 +195,23 @@ export default function LaunchDetails({ ...props }) {
             ) : (
               ''
             )}
+
+            <div className="box">
+              <h4 class="title is-4 has-text-centered">Gallery</h4>
+              <div className="columns">
+                <div className="column">
+                  {flickr_images?.map((image) => {
+                    return (
+                      <figure class="image">
+                        <img src={image} />
+                      </figure>
+                    );
+                  })}
+                </div>
+              </div>
+            </div>
           </div>
+          {/* Content end */}
         </div>
       </section>
     </>
