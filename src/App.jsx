@@ -2,7 +2,7 @@ import React from 'react';
 import './style.css';
 import Routes from './Routes';
 import { Link } from 'react-router-dom';
-import logo from './assets/images/spacex.logo.png';
+import logo from './assets/images/spacex-logo.png';
 
 export default function App() {
   return (
