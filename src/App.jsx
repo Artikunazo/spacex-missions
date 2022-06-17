@@ -2,6 +2,7 @@ import React from 'react';
 import './style.css';
 import Routes from './Routes';
 import { Link } from 'react-router-dom';
+import SpaceXLogo from '../assets/images/spacex-logo.png';
 
 export default function App() {
   return (
@@ -11,7 +12,7 @@ export default function App() {
           <div className="hero-body">
             <p className="title">
               <Link to="/">
-                <img src="" alt="SpaceX Logo" />
+                <img src="../assets/images/spacex-logo.png" alt="SpaceX Logo" />
               </Link>
             </p>
             <p className="subtitle"></p>
