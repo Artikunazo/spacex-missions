@@ -1,9 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import * as API from '../../services/launches';
 import { useParams } from 'react-router-dom';
-import { format, parseISO } from 'date-fns';
-import { Link } from 'react-router-dom';
-import { isUrlValid } from '../../services/utils';
 import Gallery from '../gallery/Gallery.component';
 import CustomLink from '../shared/custom-link/CustomLink.component';
 
@@ -111,85 +108,24 @@ export default function LaunchDetails({ ...props }) {
                 <h4 className="title is-4 has-text-centered">Reddit</h4>
                 <div className="is-flex is-justify-content-space-between">
                   {reddit_campaign ? (
-                    // <a
-                    //   href={reddit_campaign}
-                    //   target="_blank"
-                    //   rel="noopener noreferrer"
-                    //   className={`tag is-link`}
-                    // >
-                    //   <span className="icon-text">
-                    //     <span>Campaign</span>
-                    //     <span className="icon">
-                    //       <i
-                    //         className="fa fa-external-link"
-                    //         aria-hidden="true"
-                    //       ></i>
-                    //     </span>
-                    //   </span>
-                    // </a>
                     <CustomLink link={reddit_campaign} name={'Campaign'} />
                   ) : (
                     ''
                   )}
                   {reddit_launch ? (
-                    <a
-                      href={reddit_launch}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="tag is-link"
-                    >
-                      <span className="icon-text">
-                        <span>Launch</span>
-                        <span className="icon">
-                          <i
-                            className="fa fa-external-link"
-                            aria-hidden="true"
-                          ></i>
-                        </span>
-                      </span>
-                    </a>
+                    <CustomLink link={reddit_launch} name={'Launch'} />
                   ) : (
                     ''
                   )}
 
                   {reddit_media ? (
-                    <a
-                      href={reddit_media}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="tag is-link"
-                    >
-                      <span className="icon-text">
-                        <span>Media</span>
-                        <span className="icon">
-                          <i
-                            className="fa fa-external-link"
-                            aria-hidden="true"
-                          ></i>
-                        </span>
-                      </span>
-                    </a>
+                    <CustomLink link={reddit_media} name={'Media'} />
                   ) : (
                     ''
                   )}
 
                   {reddit_recovery ? (
-                    <a
-                      href={reddit_recovery}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="tag is-link"
-                    >
-                      <span className="icon-text">
-                        <span>Recovery</span>
-                        <span className="icon">
-                          <i
-                            className="fa fa-external-link"
-                            aria-hidden="true"
-                          ></i>
-                        </span>
-                      </span>
-                    </a>
+                    <CustomLink link={reddit_recovery} name={'Recovery'} />
                   ) : (
                     ''
                   )}
@@ -199,7 +135,11 @@ export default function LaunchDetails({ ...props }) {
               ''
             )}
 
-            <Gallery imagesList={flickr_images} />
+            {flickr_images?.length > 0 ? (
+              <Gallery imagesList={flickr_images} />
+            ) : (
+              ''
+            )}
           </div>
           {/* Content end */}
         </div>
