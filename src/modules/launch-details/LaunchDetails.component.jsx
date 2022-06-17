@@ -57,9 +57,11 @@ export default function LaunchDetails({ ...props }) {
           <div className="content">
             <p>Rocket: {rocket?.rocket_name}</p>
             <p>Details: {details || 'No details especified'}</p>
-            {launch_failure_details?.reason
-              ? `<p>Reason: ${launch_failure_details?.reason}</p>`
-              : ''}
+            {launch_failure_details?.reason ? (
+              <p>Reason: {launch_failure_details?.reason}</p>
+            ) : (
+              ''
+            )}
             <div class="columns is-mobile">
               <div class="column is-flex is-justify-content-center">
                 <a
