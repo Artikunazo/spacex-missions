@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import * as API from '../../services/launches';
 import { useParams } from 'react-router-dom';
-import Gallery from '../gallery/Gallery.component';
+import Gallery from '../shared/gallery/Gallery.component';
 import CustomLink from '../shared/custom-link/CustomLink.component';
 
 export default function LaunchDetails({ ...props }) {
@@ -49,12 +49,12 @@ export default function LaunchDetails({ ...props }) {
             <hr />
           </div>
           <div className="card-image">
-            <figure className="image is-4by3">
-              <img src={links?.mission_patch_small} alt="Placeholder image" />
+            <figure className="image">
+              <img src={links?.mission_patch_small} alt="Patch Launch Image" />
             </figure>
           </div>
 
-          <div className="content">
+          <div className="content mt-5">
             <p>Rocket: {rocket?.rocket_name}</p>
             <p>Details: {details || 'No details especified'}</p>
             {launch_failure_details?.reason ? (
