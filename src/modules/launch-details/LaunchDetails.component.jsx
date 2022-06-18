@@ -57,11 +57,18 @@ export default function LaunchDetails({ ...props }) {
           </div>
 
           <div className="content mt-5">
-            <p>
-              Rocket:
-              <span onClick={() => (isModalOpened = true)}>
+            <p class="is-flex is-justify-content-space-between">
+              <span>
+                Rocket:&nbsp;
                 {rocket?.rocket_name}
               </span>
+              <button
+                type="button"
+                class="button is-small is-link is-light pl-3"
+                onClick={() => (isModalOpened = true)}
+              >
+                Details
+              </button>
             </p>
             <p>Details: {details || 'No details especified'}</p>
             {launch_failure_details?.reason ? (
@@ -153,7 +160,7 @@ export default function LaunchDetails({ ...props }) {
           {/* Content end */}
         </div>
       </section>
-      <Rocket isOPen={isModalOpened} rocketInfo="" />
+      <Rocket isOpen={isModalOpened} rocketInfo={rocket} />
     </>
   );
 }

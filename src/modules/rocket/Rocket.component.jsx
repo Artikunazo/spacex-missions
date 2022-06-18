@@ -1,20 +1,26 @@
 import React, { useState } from 'react';
-import { Sheet } from 'react-modal-sheet';
 
-export default function Rocket({ rocketInfo, isOpen, ...props }) {
-  const [open, setOpen] = useState(isOpen);
+export default function Rocket({ isOpen, rocketInfo, ...props }) {
+  const [open, setOpen] = useState(false);
+  console.log(isOpen);
   return (
     <>
-      <Sheet isOpen={isOpen} onClose={() => setOpen(false)}>
-        <Sheet.Container>
-          <Sheet.Header />
-          <Sheet.Content>
-            <p>Modal</p>
-          </Sheet.Content>
-        </Sheet.Container>
-
-        <Sheet.Backdrop />
-      </Sheet>
+      <div class="modal">
+        <div class="modal-background"></div>
+        <div class="modal-card">
+          <header class="modal-card-head">
+            <p class="modal-card-title">Modal title</p>
+            <button class="delete" aria-label="close"></button>
+          </header>
+          <section class="modal-card-body">
+            {/* <!-- Content ... --> */}
+          </section>
+          <footer class="modal-card-foot">
+            <button class="button is-success">Save changes</button>
+            <button class="button">Cancel</button>
+          </footer>
+        </div>
+      </div>
     </>
   );
 }
