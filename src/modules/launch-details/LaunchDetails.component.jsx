@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import * as API from '../../services/launches';
-import { useParams } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 import Gallery from '../shared/gallery/Gallery.component';
 import CustomLink from '../shared/custom-link/CustomLink.component';
+import Rocket from '../rocket/Rocket.component';
 
 export default function LaunchDetails({ ...props }) {
   const { launchId } = useParams();
@@ -26,9 +27,10 @@ export default function LaunchDetails({ ...props }) {
     video_link,
   } = links || {};
 
+  let isModalOpened = false;
+
   return (
     <>
-      {console.log(launchDetails)}
       <section className="card">
         <div className="card-content">
           <div className="media-content">
@@ -55,7 +57,12 @@ export default function LaunchDetails({ ...props }) {
           </div>
 
           <div className="content mt-5">
-            <p>Rocket: {rocket?.rocket_name}</p>
+            <p>
+              Rocket:
+              <span onClick={() => (isModalOpened = true)}>
+                {rocket?.rocket_name}
+              </span>
+            </p>
             <p>Details: {details || 'No details especified'}</p>
             {launch_failure_details?.reason ? (
               <p>Reason: {launch_failure_details?.reason}</p>
@@ -146,6 +153,7 @@ export default function LaunchDetails({ ...props }) {
           {/* Content end */}
         </div>
       </section>
+      <Rocket isOPen={isModalOpened} rocketInfo="" />
     </>
   );
 }
