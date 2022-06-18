@@ -1,7 +1,8 @@
 import React from 'react';
 import { Routes, Route, Link } from 'react-router-dom';
 
-export default function Card({
+export default function LaunchItem({
+  flightLogo,
   flightNumber,
   missionName,
   missionDate,
@@ -25,6 +26,9 @@ export default function Card({
               {launchSuccess ? 'Success' : 'Failure'}
             </span>
           </h3>
+        </div>
+        <div className="card-image has-text-centered">
+          <img src={flightLogo} alt="" />
         </div>
         <div className="card-footer">
           <Link to={`/flight/${flightNumber}`} className="card-footer-item">

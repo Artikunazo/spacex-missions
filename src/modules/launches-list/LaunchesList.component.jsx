@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import Card from '../card/Card.component';
+import LaunchItem from '../launch-item/LaunchItem.component';
 import * as API from '../../services/launches';
 
 export default function LaunchesList() {
@@ -16,7 +16,8 @@ export default function LaunchesList() {
         <div className="column">
           {launches.map((launch) => (
             <div key={launch.flight_number} className="py-2 px-2">
-              <Card
+              <LaunchItem
+                flightLogo={launch.links.mission_patch_small}
                 flightNumber={launch.flight_number}
                 missionName={launch.mission_name}
                 missionDate={launch.launch_year}
