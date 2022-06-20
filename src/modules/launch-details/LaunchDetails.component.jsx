@@ -10,6 +10,10 @@ export default function LaunchDetails({ ...props }) {
   const { launchId } = useParams();
   const [launchDetails, setLaunchDetails] = useState({});
 
+  useEffect(() => {
+    API.getLaunchByFlight(launchId).then(setLaunchDetails);
+  }, {});
+
   const { details, launch_date_local, rocket, launch_failure_details, links } =
     launchDetails || {};
 
@@ -60,10 +64,7 @@ export default function LaunchDetails({ ...props }) {
     });
   }
 
-  useEffect(() => {
-    API.getLaunchByFlight(launchId).then(setLaunchDetails);
-    initTabs();
-  }, {});
+  initTabs();
 
   return (
     <>
@@ -92,10 +93,10 @@ export default function LaunchDetails({ ...props }) {
             </figure>
           </div>
 
-          <div class="content mt-5">
-            <div class="tabs is-fullwidth" id="tabs">
+          <div className="content mt-5">
+            <div className="tabs is-fullwidth" id="tabs">
               <ul>
-                <li class="is-active" data-tab="1">
+                <li className="is-active" data-tab="1">
                   <a>Rocket</a>
                 </li>
                 <li data-tab="2">
@@ -110,7 +111,7 @@ export default function LaunchDetails({ ...props }) {
               </ul>
             </div>
             <div id="tab-content">
-              <section class="is-active" data-content="1">
+              <section className="is-active" data-content="1">
                 <Rocket rocketInfo={rocket} />
               </section>
               <section data-content="2">
