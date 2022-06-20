@@ -27,6 +27,8 @@ export default function LaunchDetails({ ...props }) {
     reddit_recovery,
     video_link,
   } = links || {};
+  const haveRedditLinks =
+    reddit_campaign || reddit_launch || reddit_media || reddit_recovery;
 
   let isModalOpened = false;
   const TABS = [...document.querySelectorAll('#tabs ul li')];
@@ -102,7 +104,10 @@ export default function LaunchDetails({ ...props }) {
                 <li data-tab="2">
                   <a>Launch details</a>
                 </li>
-                <li data-tab="3">
+                <li
+                  data-tab="3"
+                  className={`${haveRedditLinks ? 'is-block' : 'is-hidden'}`}
+                >
                   <a>Reddit</a>
                 </li>
                 <li data-tab="4">
@@ -115,14 +120,17 @@ export default function LaunchDetails({ ...props }) {
                 <Rocket rocketInfo={rocket} />
               </section>
               <section data-content="2">
-                <p>Details: {details || 'No details especified'}</p>
-                {launch_failure_details?.reason ? (
-                  <p>Reason: {launch_failure_details?.reason}</p>
-                ) : (
-                  ''
-                )}
-                <div class="columns is-mobile">
-                  <div class="column is-flex is-justify-content-center">
+                <p>{details || 'No details especified'}</p>
+                &nbsp;
+                <p
+                  className={
+                    launch_failure_details?.reason ? 'is-block' : 'is-hidden'
+                  }
+                >
+                  Reason: {launch_failure_details?.reason}
+                </p>
+                <div className="columns is-mobile">
+                  <div className="column is-flex is-justify-content-center">
                     <a
                       href={article_link}
                       className="button is-link"
@@ -164,41 +172,34 @@ export default function LaunchDetails({ ...props }) {
                   </div>
                 </div>
               </section>
-              <section data-content="3">
-                {reddit_campaign &&
-                reddit_launch &&
-                reddit_media &&
-                reddit_recovery ? (
-                  <div className="box">
-                    <h4 className="title is-4 has-text-centered">Reddit</h4>
-                    <div className="is-flex is-justify-content-space-between">
-                      {reddit_campaign ? (
-                        <CustomLink link={reddit_campaign} name={'Campaign'} />
-                      ) : (
-                        ''
-                      )}
-                      {reddit_launch ? (
-                        <CustomLink link={reddit_launch} name={'Launch'} />
-                      ) : (
-                        ''
-                      )}
+              <section data-content="3" data-name="reddit">
+                <div className="box">
+                  {/* <h4 className="title is-4 has-text-centered">Reddit</h4> */}
+                  <div className="is-flex is-justify-content-space-between">
+                    {reddit_campaign ? (
+                      <CustomLink link={reddit_campaign} name={'Campaign'} />
+                    ) : (
+                      ''
+                    )}
+                    {reddit_launch ? (
+                      <CustomLink link={reddit_launch} name={'Launch'} />
+                    ) : (
+                      ''
+                    )}
 
-                      {reddit_media ? (
-                        <CustomLink link={reddit_media} name={'Media'} />
-                      ) : (
-                        ''
-                      )}
+                    {reddit_media ? (
+                      <CustomLink link={reddit_media} name={'Media'} />
+                    ) : (
+                      ''
+                    )}
 
-                      {reddit_recovery ? (
-                        <CustomLink link={reddit_recovery} name={'Recovery'} />
-                      ) : (
-                        ''
-                      )}
-                    </div>
+                    {reddit_recovery ? (
+                      <CustomLink link={reddit_recovery} name={'Recovery'} />
+                    ) : (
+                      ''
+                    )}
                   </div>
-                ) : (
-                  ''
-                )}
+                </div>
               </section>
               <section data-content="4">
                 {flickr_images?.length > 0 ? (
