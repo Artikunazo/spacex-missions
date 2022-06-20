@@ -5,6 +5,7 @@ import Gallery from '../shared/gallery/Gallery.component';
 import CustomLink from '../shared/custom-link/CustomLink.component';
 import Rocket from '../rocket/Rocket.component';
 import './LaunchDetails.component.css';
+import DescriptionLaunch from '../description-launch/DescriptionLaunch.component';
 
 export default function LaunchDetails({ ...props }) {
   const { launchId } = useParams();
@@ -102,7 +103,7 @@ export default function LaunchDetails({ ...props }) {
                   <a>Rocket</a>
                 </li>
                 <li data-tab="2">
-                  <a>Launch details</a>
+                  <a>Details</a>
                 </li>
                 <li
                   data-tab="3"
@@ -110,7 +111,10 @@ export default function LaunchDetails({ ...props }) {
                 >
                   <a>Reddit</a>
                 </li>
-                <li data-tab="4">
+                <li
+                  data-tab="4"
+                  className={`${haveRedditLinks ? 'is-block' : 'is-hidden'}`}
+                >
                   <a>Gallery</a>
                 </li>
               </ul>
@@ -120,57 +124,14 @@ export default function LaunchDetails({ ...props }) {
                 <Rocket rocketInfo={rocket} />
               </section>
               <section data-content="2">
-                <p>{details || 'No details especified'}</p>
-                &nbsp;
-                <p
-                  className={
-                    launch_failure_details?.reason ? 'is-block' : 'is-hidden'
-                  }
-                >
-                  Reason: {launch_failure_details?.reason}
-                </p>
-                <div className="columns is-mobile">
-                  <div className="column is-flex is-justify-content-center">
-                    <a
-                      href={article_link}
-                      className="button is-link"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      <span className="icon-text">
-                        <span>See article</span>
-                        <span className="icon">
-                          <i
-                            className="fa fa-external-link"
-                            aria-hidden="true"
-                          ></i>
-                        </span>
-                      </span>
-                    </a>
-                  </div>
-                  <div class="column is-flex is-justify-content-center">
-                    {wikipedia ? (
-                      <a
-                        href={wikipedia}
-                        className="button is-link"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        <span className="icon-text">
-                          <span>See wikipedia</span>
-                          <span className="icon">
-                            <i
-                              className="fa fa-external-link"
-                              aria-hidden="true"
-                            ></i>
-                          </span>
-                        </span>
-                      </a>
-                    ) : (
-                      ''
-                    )}
-                  </div>
-                </div>
+                <DescriptionLaunch
+                  props={{
+                    reason: launch_failure_details,
+                  }}
+                  failureReason={launch_failure_details}
+                  wikipedia={wikipedia}
+                  article_link={article_link}
+                />
               </section>
               <section data-content="3" data-name="reddit">
                 <div className="box">
