@@ -4,14 +4,11 @@ import { useParams, Link } from 'react-router-dom';
 import Gallery from '../shared/gallery/Gallery.component';
 import CustomLink from '../shared/custom-link/CustomLink.component';
 import Rocket from '../rocket/Rocket.component';
+import './LaunchDetails.component.css';
 
 export default function LaunchDetails({ ...props }) {
   const { launchId } = useParams();
   const [launchDetails, setLaunchDetails] = useState({});
-
-  useEffect(() => {
-    API.getLaunchByFlight(launchId).then(setLaunchDetails);
-  }, {});
 
   const { details, launch_date_local, rocket, launch_failure_details, links } =
     launchDetails || {};
@@ -28,6 +25,45 @@ export default function LaunchDetails({ ...props }) {
   } = links || {};
 
   let isModalOpened = false;
+  const TABS = [...document.querySelectorAll('#tabs ul li')];
+  const CONTENT = [...document.querySelectorAll('#tab-content section')];
+  const ACTIVE_CLASS = 'is-active';
+
+  function initTabs() {
+    TABS.forEach((tab) => {
+      tab.addEventListener('click', (e) => {
+        let selected = tab.getAttribute('data-tab');
+        updateActiveTab(tab);
+        updateActiveContent(selected);
+      });
+    });
+  }
+
+  function updateActiveTab(selected) {
+    TABS.forEach((tab) => {
+      if (tab && tab.classList.contains(ACTIVE_CLASS)) {
+        tab.classList.remove(ACTIVE_CLASS);
+      }
+    });
+    selected.classList.add(ACTIVE_CLASS);
+  }
+
+  function updateActiveContent(selected) {
+    CONTENT.forEach((item) => {
+      if (item && item.classList.contains(ACTIVE_CLASS)) {
+        item.classList.remove(ACTIVE_CLASS);
+      }
+      let data = item.getAttribute('data-content');
+      if (data === selected) {
+        item.classList.add(ACTIVE_CLASS);
+      }
+    });
+  }
+
+  useEffect(() => {
+    API.getLaunchByFlight(launchId).then(setLaunchDetails);
+    initTabs();
+  }, {});
 
   return (
     <>
@@ -56,111 +92,125 @@ export default function LaunchDetails({ ...props }) {
             </figure>
           </div>
 
-          <div className="content mt-5">
-            <p class="is-flex is-justify-content-space-between">
-              <span>
-                Rocket:&nbsp;
-                {rocket?.rocket_name}
-              </span>
-              <button
-                type="button"
-                class="button is-small is-link is-light pl-3"
-                onClick={() => (isModalOpened = true)}
-              >
-                Details
-              </button>
-            </p>
-            <p>Details: {details || 'No details especified'}</p>
-            {launch_failure_details?.reason ? (
-              <p>Reason: {launch_failure_details?.reason}</p>
-            ) : (
-              ''
-            )}
-            <div class="columns is-mobile">
-              <div class="column is-flex is-justify-content-center">
-                <a
-                  href={article_link}
-                  className="button is-link"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <span className="icon-text">
-                    <span>See article</span>
-                    <span className="icon">
-                      <i className="fa fa-external-link" aria-hidden="true"></i>
-                    </span>
-                  </span>
-                </a>
-              </div>
-              <div class="column is-flex is-justify-content-center">
-                {wikipedia ? (
-                  <a
-                    href={wikipedia}
-                    className="button is-link"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    <span className="icon-text">
-                      <span>See wikipedia</span>
-                      <span className="icon">
-                        <i
-                          className="fa fa-external-link"
-                          aria-hidden="true"
-                        ></i>
-                      </span>
-                    </span>
-                  </a>
+          <div class="content mt-5">
+            <div class="tabs is-fullwidth" id="tabs">
+              <ul>
+                <li class="is-active" data-tab="1">
+                  <a>Rocket</a>
+                </li>
+                <li data-tab="2">
+                  <a>Launch details</a>
+                </li>
+                <li data-tab="3">
+                  <a>Reddit</a>
+                </li>
+                <li data-tab="4">
+                  <a>Gallery</a>
+                </li>
+              </ul>
+            </div>
+            <div id="tab-content">
+              <section class="is-active" data-content="1">
+                <Rocket rocketInfo={rocket} />
+              </section>
+              <section data-content="2">
+                <p>Details: {details || 'No details especified'}</p>
+                {launch_failure_details?.reason ? (
+                  <p>Reason: {launch_failure_details?.reason}</p>
                 ) : (
                   ''
                 )}
-              </div>
-            </div>
-
-            {reddit_campaign &&
-            reddit_launch &&
-            reddit_media &&
-            reddit_recovery ? (
-              <div className="box">
-                <h4 className="title is-4 has-text-centered">Reddit</h4>
-                <div className="is-flex is-justify-content-space-between">
-                  {reddit_campaign ? (
-                    <CustomLink link={reddit_campaign} name={'Campaign'} />
-                  ) : (
-                    ''
-                  )}
-                  {reddit_launch ? (
-                    <CustomLink link={reddit_launch} name={'Launch'} />
-                  ) : (
-                    ''
-                  )}
-
-                  {reddit_media ? (
-                    <CustomLink link={reddit_media} name={'Media'} />
-                  ) : (
-                    ''
-                  )}
-
-                  {reddit_recovery ? (
-                    <CustomLink link={reddit_recovery} name={'Recovery'} />
-                  ) : (
-                    ''
-                  )}
+                <div class="columns is-mobile">
+                  <div class="column is-flex is-justify-content-center">
+                    <a
+                      href={article_link}
+                      className="button is-link"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <span className="icon-text">
+                        <span>See article</span>
+                        <span className="icon">
+                          <i
+                            className="fa fa-external-link"
+                            aria-hidden="true"
+                          ></i>
+                        </span>
+                      </span>
+                    </a>
+                  </div>
+                  <div class="column is-flex is-justify-content-center">
+                    {wikipedia ? (
+                      <a
+                        href={wikipedia}
+                        className="button is-link"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        <span className="icon-text">
+                          <span>See wikipedia</span>
+                          <span className="icon">
+                            <i
+                              className="fa fa-external-link"
+                              aria-hidden="true"
+                            ></i>
+                          </span>
+                        </span>
+                      </a>
+                    ) : (
+                      ''
+                    )}
+                  </div>
                 </div>
-              </div>
-            ) : (
-              ''
-            )}
+              </section>
+              <section data-content="3">
+                {reddit_campaign &&
+                reddit_launch &&
+                reddit_media &&
+                reddit_recovery ? (
+                  <div className="box">
+                    <h4 className="title is-4 has-text-centered">Reddit</h4>
+                    <div className="is-flex is-justify-content-space-between">
+                      {reddit_campaign ? (
+                        <CustomLink link={reddit_campaign} name={'Campaign'} />
+                      ) : (
+                        ''
+                      )}
+                      {reddit_launch ? (
+                        <CustomLink link={reddit_launch} name={'Launch'} />
+                      ) : (
+                        ''
+                      )}
 
-            {flickr_images?.length > 0 ? (
-              <Gallery imagesList={flickr_images} />
-            ) : (
-              ''
-            )}
+                      {reddit_media ? (
+                        <CustomLink link={reddit_media} name={'Media'} />
+                      ) : (
+                        ''
+                      )}
+
+                      {reddit_recovery ? (
+                        <CustomLink link={reddit_recovery} name={'Recovery'} />
+                      ) : (
+                        ''
+                      )}
+                    </div>
+                  </div>
+                ) : (
+                  ''
+                )}
+              </section>
+              <section data-content="4">
+                {flickr_images?.length > 0 ? (
+                  <Gallery imagesList={flickr_images} />
+                ) : (
+                  ''
+                )}
+              </section>
+            </div>
           </div>
           {/* Content end */}
         </div>
       </section>
-      <Rocket isOpen={isModalOpened} rocketInfo={rocket} />
     </>
   );
 }
