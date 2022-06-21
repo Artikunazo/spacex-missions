@@ -100,16 +100,31 @@ export default function LaunchDetails({ ...props }) {
             <div className="tabs is-fullwidth" id="tabs">
               <ul>
                 <li className="is-active" data-tab="1">
-                  <a>Rocket</a>
+                  <a>
+                    <span className="icon is-small">
+                      <i class="fa fa-rocket" aria-hidden="true"></i>
+                    </span>
+                    <span>Rocket</span>
+                  </a>
                 </li>
                 <li data-tab="2">
-                  <a>Details</a>
+                  <a>
+                    <span className="icon is-small">
+                      <i class="fa fa-info" aria-hidden="true"></i>
+                    </span>
+                    <span>Details</span>
+                  </a>
                 </li>
                 <li
                   data-tab="3"
                   className={`${haveRedditLinks ? 'is-block' : 'is-hidden'}`}
                 >
-                  <a>Reddit</a>
+                  <a>
+                    <span className="icon is-small">
+                      <i class="fa fa-reddit-alien" aria-hidden="true"></i>
+                    </span>
+                    <span>Reddit</span>
+                  </a>
                 </li>
                 <li
                   data-tab="4"
@@ -117,7 +132,12 @@ export default function LaunchDetails({ ...props }) {
                     flickr_images?.length ? 'is-block' : 'is-hidden'
                   }`}
                 >
-                  <a>Gallery</a>
+                  <a>
+                    <span className="icon is-small">
+                      <i class="fa fa-picture-o" aria-hidden="true"></i>
+                    </span>
+                    <span>Gallery</span>
+                  </a>
                 </li>
               </ul>
             </div>
