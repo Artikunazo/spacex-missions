@@ -26,12 +26,10 @@ export default function LaunchDetails({ ...props }) {
     reddit_launch,
     reddit_media,
     reddit_recovery,
-    video_link,
   } = links || {};
   const haveRedditLinks =
     reddit_campaign || reddit_launch || reddit_media || reddit_recovery;
 
-  let isModalOpened = false;
   const TABS = [...document.querySelectorAll('#tabs ul li')];
   const CONTENT = [...document.querySelectorAll('#tab-content section')];
   const ACTIVE_CLASS = 'is-active';
