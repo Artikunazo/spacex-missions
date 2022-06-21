@@ -146,7 +146,6 @@ export default function LaunchDetails({ ...props }) {
               <section data-content="2">
                 <DescriptionLaunch
                   details={details}
-                  reason={launch_failure_details}
                   failureDetails={launch_failure_details}
                   wikipedia={wikipedia}
                   articleLink={article_link}

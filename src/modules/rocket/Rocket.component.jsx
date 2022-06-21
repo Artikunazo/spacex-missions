@@ -7,39 +7,78 @@ export default function Rocket(...props) {
   const { cores } = rocketInfo?.first_stage || {};
   const { payloads } = rocketInfo?.second_stage || {};
 
-  // const {
-  //   core_serial,
-  //   flights,
-  //   land_success,
-  //   landing_type,
-  //   landing_vehicle,
-  //   legs,
-  //   reused,
-  // } = first_stage?.cores || {};
-  // const {
-  //   customers,
-  //   manufacturer,
-  //   nationality,
-  //   orbit,
-  //   payload_type,
-  //   payload_mass_kg,
-  //   payload_mass_lbs,
-  //   cargo_manifest,
-  // } = second_stage?.payloads || {};
-  console.log(payloads);
+  const firstStageRender = (firstStage) => {
+    const {
+      core_serial,
+      flight,
+      land_success,
+      landing_type,
+      landing_vehicle,
+      reused,
+    } = firstStage || {};
+    return (
+      <>
+        <div className="column has-text-centered">
+          <p>
+            Core Serial: <strong>{core_serial}</strong>
+          </p>
+          <p>Flight: {flight}</p>
+          <p>
+            Landing:{' '}
+            <span
+              className={` ${
+                land_success ? 'tag is-success' : 'tag is-danger'
+              }`}
+            >
+              {land_success ? 'Success' : 'Failure'}
+            </span>
+          </p>
+          <p>Landing type: {landing_type}</p>
+          <p>Landing vehicle: {landing_vehicle}</p>
+          <p>It was reused?: {reused.toString()}</p>
+        </div>
+      </>
+    );
+  };
+
+  const secondStageRender = (secondStage) => {
+    // const {
+    //   customers,
+    //   manufacturer,
+    //   nationality,
+    //   orbit,
+    //   payload_type,
+    //   payload_mass_kg,
+    //   payload_mass_lbs,
+    //   cargo_manifest,
+    // } = second_stage?.payloads || {};
+  };
+
+  console.log(cores);
   return (
     <>
       <div className="columns">
         <div className="column">
-          <p class="is-flex is-justify-content-space-between">
-            <span>
-              Rocket:&nbsp;
-              {rocket_name}
-            </span>
-            <span>Type: &nbsp;{rocket_type}</span>
-          </p>
+          <div class="is-flex is-justify-content-space-between">
+            <p class="subtitle is-4">{rocket_name}</p>
+            <p className="subtitle">Type: &nbsp;{rocket_type}</p>
+          </div>
         </div>
       </div>
+
+      <div className="columns" data-name="first-stage">
+        <div className="column">
+          <p className="has-text-centered">
+            <strong>First Stage</strong>
+          </p>
+          <div className="columns is-multiline is-mobile">
+            {cores?.map((item) => {
+              return firstStageRender(item);
+            })}
+          </div>
+        </div>
+      </div>
+      <div className="columns" data-name="second-stage"></div>
     </>
   );
 }
