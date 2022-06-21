@@ -113,7 +113,9 @@ export default function LaunchDetails({ ...props }) {
                 </li>
                 <li
                   data-tab="4"
-                  className={`${haveRedditLinks ? 'is-block' : 'is-hidden'}`}
+                  className={`${
+                    flickr_images?.length ? 'is-block' : 'is-hidden'
+                  }`}
                 >
                   <a>Gallery</a>
                 </li>
@@ -125,49 +127,52 @@ export default function LaunchDetails({ ...props }) {
               </section>
               <section data-content="2">
                 <DescriptionLaunch
-                  props={{
-                    reason: launch_failure_details,
-                  }}
-                  failureReason={launch_failure_details}
+                  details={details}
+                  reason={launch_failure_details}
+                  failureDetails={launch_failure_details}
                   wikipedia={wikipedia}
-                  article_link={article_link}
+                  articleLink={article_link}
                 />
               </section>
               <section data-content="3" data-name="reddit">
                 <div className="box">
-                  {/* <h4 className="title is-4 has-text-centered">Reddit</h4> */}
                   <div className="is-flex is-justify-content-space-between">
-                    {reddit_campaign ? (
-                      <CustomLink link={reddit_campaign} name={'Campaign'} />
-                    ) : (
-                      ''
-                    )}
-                    {reddit_launch ? (
-                      <CustomLink link={reddit_launch} name={'Launch'} />
-                    ) : (
-                      ''
-                    )}
+                    <CustomLink
+                      link={reddit_campaign}
+                      name={'Campaign'}
+                      className={`${
+                        reddit_campaign ? 'is-block' : 'is-hidden'
+                      }`}
+                    />
+                    <CustomLink
+                      link={reddit_launch}
+                      name={'Launch'}
+                      className={`${reddit_launch ? 'is-block' : 'is-hidden'}`}
+                    />
 
-                    {reddit_media ? (
-                      <CustomLink link={reddit_media} name={'Media'} />
-                    ) : (
-                      ''
-                    )}
+                    <CustomLink
+                      link={reddit_media}
+                      name={'Media'}
+                      className={`${reddit_media ? 'is-block' : 'is-hidden'}`}
+                    />
 
-                    {reddit_recovery ? (
-                      <CustomLink link={reddit_recovery} name={'Recovery'} />
-                    ) : (
-                      ''
-                    )}
+                    <CustomLink
+                      link={reddit_recovery}
+                      name={'Recovery'}
+                      className={`${
+                        reddit_recovery ? 'is-block' : 'is-hidden'
+                      }`}
+                    />
                   </div>
                 </div>
               </section>
               <section data-content="4">
-                {flickr_images?.length > 0 ? (
-                  <Gallery imagesList={flickr_images} />
-                ) : (
-                  ''
-                )}
+                <Gallery
+                  imagesList={flickr_images}
+                  className={`${
+                    flickr_images?.length ? 'is-block' : 'is-hidden'
+                  }`}
+                />
               </section>
             </div>
           </div>
