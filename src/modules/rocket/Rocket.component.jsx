@@ -20,7 +20,9 @@ export default function Rocket(...props) {
       <>
         <div
           className={`column has-text-centered ${
-            index % 2 === 0 && index > 0 ? 'is-full' : 'is-half'
+            (index % 2 === 0 && index > 0) || index + 1 === cores.length
+              ? 'is-full'
+              : 'is-half'
           }`}
         >
           <p>
@@ -39,14 +41,13 @@ export default function Rocket(...props) {
           </p>
           <p>Landing type: {landing_type}</p>
           <p>Landing vehicle: {landing_vehicle}</p>
-          <p>It was reused?: {reused.toString()}</p>
+          <p>It was reused?: {reused ? 'Yes' : 'No'}</p>
         </div>
       </>
     );
   };
 
   const secondStageRender = (secondStage, index) => {
-    console.log(secondStage);
     const {
       customers,
       manufacturer,
@@ -68,8 +69,14 @@ export default function Rocket(...props) {
           <p>
             Mass: {payload_mass_kg}kg ({payload_mass_lbs}lbs)
           </p>
+          <p>Manufacturer: {manufacturer}</p>
           <p>Nationality: {nationality}</p>
           <p>Orbit: {orbit}</p>
+          <p>Costumers: {customers?.map((customer) => customer)}</p>
+          <p className={`${cargo_manifest ? 'is-block' : 'is-hidden'}`}>
+            Cargo: {cargo_manifest}
+          </p>
+          <p>Reused: {reused ? 'Yes' : 'No'}</p>
         </div>
       </>
     );

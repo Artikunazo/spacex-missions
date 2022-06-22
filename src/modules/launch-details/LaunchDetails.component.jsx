@@ -90,7 +90,16 @@ export default function LaunchDetails({ ...props }) {
           </div>
           <div className="card-image">
             <figure className="image">
-              <img src={links?.mission_patch_small} alt="Patch Launch Image" />
+              <img
+                className="is-hidden-desktop"
+                src={links?.mission_patch_small}
+                alt="Patch Launch Image"
+              />
+              <img
+                className="is-hidden-touch"
+                src={links?.mission_patch}
+                alt="Patch Launch Image"
+              />
             </figure>
           </div>
 
