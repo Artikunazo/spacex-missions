@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import './Rocket.component.css';
 
 export default function Rocket(...props) {
   const [data] = props || [];
