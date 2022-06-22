@@ -45,20 +45,36 @@ export default function Rocket(...props) {
     );
   };
 
-  const secondStageRender = (secondStage) => {
-    // const {
-    //   customers,
-    //   manufacturer,
-    //   nationality,
-    //   orbit,
-    //   payload_type,
-    //   payload_mass_kg,
-    //   payload_mass_lbs,
-    //   cargo_manifest,
-    // } = second_stage?.payloads || {};
+  const secondStageRender = (secondStage, index) => {
+    console.log(secondStage);
+    const {
+      customers,
+      manufacturer,
+      nationality,
+      orbit,
+      payload_id,
+      payload_type,
+      payload_mass_kg,
+      payload_mass_lbs,
+      cargo_manifest,
+      reused,
+    } = secondStage || {};
+
+    return (
+      <>
+        <div className="column has-text-centered">
+          <p>{payload_id}</p>
+          <p>Type: {payload_type}</p>
+          <p>
+            Mass: {payload_mass_kg}kg ({payload_mass_lbs}lbs)
+          </p>
+          <p>Nationality: {nationality}</p>
+          <p>Orbit: {orbit}</p>
+        </div>
+      </>
+    );
   };
 
-  console.log(cores);
   return (
     <>
       <div className="columns">
@@ -82,7 +98,19 @@ export default function Rocket(...props) {
           </div>
         </div>
       </div>
-      <div className="columns" data-name="second-stage"></div>
+      <hr />
+      <div className="columns" data-name="second-stage">
+        <div className="column">
+          <p className="has-text-centered">
+            <strong>Second Stage</strong>
+          </p>
+          <div className="columns is-flex is-multiline is-mobile">
+            {payloads?.map((item, index) => {
+              return secondStageRender(item, index);
+            })}
+          </div>
+        </div>
+      </div>
     </>
   );
 }
