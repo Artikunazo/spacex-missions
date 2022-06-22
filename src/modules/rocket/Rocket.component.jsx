@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import './Rocket.component.css';
 
 export default function Rocket(...props) {
   const [data] = props || [];
@@ -7,7 +8,7 @@ export default function Rocket(...props) {
   const { cores } = rocketInfo?.first_stage || {};
   const { payloads } = rocketInfo?.second_stage || {};
 
-  const firstStageRender = (firstStage) => {
+  const firstStageRender = (firstStage, index) => {
     const {
       core_serial,
       flight,
@@ -18,7 +19,11 @@ export default function Rocket(...props) {
     } = firstStage || {};
     return (
       <>
-        <div className="column has-text-centered">
+        <div
+          className={`column has-text-centered ${
+            index % 2 === 0 && index > 0 ? 'is-full' : 'is-half'
+          }`}
+        >
           <p>
             Core Serial: <strong>{core_serial}</strong>
           </p>
@@ -71,9 +76,9 @@ export default function Rocket(...props) {
           <p className="has-text-centered">
             <strong>First Stage</strong>
           </p>
-          <div className="columns is-multiline is-mobile">
-            {cores?.map((item) => {
-              return firstStageRender(item);
+          <div className="columns is-flex is-multiline is-mobile">
+            {cores?.map((item, index) => {
+              return firstStageRender(item, index);
             })}
           </div>
         </div>
