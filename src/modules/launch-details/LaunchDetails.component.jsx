@@ -74,11 +74,11 @@ export default function LaunchDetails({ ...props }) {
       <header className="pl-1 pb-5 header-sticky">
         <span onClick={() => navigate(-1)}>
           <i
-            class="fa fa-arrow-left is-size-2"
+            class="fa fa-arrow-left is-size-3"
             aria-hidden="true"
             title="Back"
           ></i>{' '}
-          <span className="is-size-3">Back</span>
+          <span className="is-size-4">Back</span>
         </span>
       </header>
       <section className="card">
