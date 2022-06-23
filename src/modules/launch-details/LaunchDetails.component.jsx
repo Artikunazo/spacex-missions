@@ -71,7 +71,7 @@ export default function LaunchDetails({ ...props }) {
 
   return (
     <>
-      <header className="pl-1 pb-5">
+      <header className="pl-1 pb-5 header-sticky">
         <span onClick={() => navigate(-1)}>
           <i
             class="fa fa-arrow-left is-size-2"

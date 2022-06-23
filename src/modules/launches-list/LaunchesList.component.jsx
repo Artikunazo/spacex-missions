@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import LaunchItem from '../launch-item/LaunchItem.component';
 import * as API from '../../services/launches';
+import './LaunchesList.component.css';
 
 export default function LaunchesList() {
   const [launches, setLaunches] = useState([]);
@@ -10,8 +11,31 @@ export default function LaunchesList() {
     API.getAllLaunches().then(setLaunches);
   }, []);
 
+  //Get the button:
+  const btnGoToTop = document.querySelector('.back-to-top');
+
+  // When the user scrolls down 20px from the top of the document, show the button
+  window.onscroll = function () {
+    scrollFunction();
+  };
+
+  function scrollFunction() {
+    if (document.documentElement.scrollTop > 350) {
+      btnGoToTop.classList.add('is-flex');
+      btnGoToTop.classList.remove('is-hidden');
+    } else {
+      btnGoToTop.classList.remove('is-flex');
+      btnGoToTop.classList.add('is-hidden');
+    }
+  }
+
   return (
     <>
+      <div className="back-to-top is-hidden">
+        <span onClick={() => (document.documentElement.scrollTop = 0)}>
+          <i className="fa fa-arrow-up is-size-3" aria-hidden="true"></i>
+        </span>
+      </div>
       <div className="columns">
         <div className="column">
           {launches.map((launch) => (

@@ -5,3 +5,9 @@
 #tab-content section.is-active {
   display: block;
 }
+.header-sticky {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background-color: white;
+}
