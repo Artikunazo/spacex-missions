@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import * as API from '../../services/launches';
-import { useParams, Link } from 'react-router-dom';
+import { useParams, Link, useNavigate } from 'react-router-dom';
 import Gallery from '../shared/gallery/Gallery.component';
 import CustomLink from '../shared/custom-link/CustomLink.component';
 import Rocket from '../rocket/Rocket.component';
@@ -14,6 +14,8 @@ export default function LaunchDetails({ ...props }) {
   useEffect(() => {
     API.getLaunchByFlight(launchId).then(setLaunchDetails);
   }, {});
+
+  const navigate = useNavigate();
 
   const { details, launch_date_local, rocket, launch_failure_details, links } =
     launchDetails || {};
@@ -69,6 +71,16 @@ export default function LaunchDetails({ ...props }) {
 
   return (
     <>
+      <header className="pl-1 pb-5">
+        <span onClick={() => navigate(-1)}>
+          <i
+            class="fa fa-arrow-left is-size-2"
+            aria-hidden="true"
+            title="Back"
+          ></i>{' '}
+          <span className="is-size-3">Back</span>
+        </span>
+      </header>
       <section className="card">
         <div className="card-content">
           <div className="media-content">

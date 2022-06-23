@@ -14,7 +14,7 @@ export default function App() {
                 <figure className="image">
                   <img
                     src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/de/SpaceX-Logo.svg/2560px-SpaceX-Logo.svg.png"
-                    alt="Placeholder image"
+                    alt="SpaceX Logo"
                   />
                 </figure>
               </Link>
