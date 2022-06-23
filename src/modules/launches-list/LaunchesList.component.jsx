@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import LaunchItem from '../launch-item/LaunchItem.component';
 import * as API from '../../services/launches';
-import Loading from '../shared/loading/Loading.component';
+import { Loading } from '../shared/shared.module';
 import './LaunchesList.component.css';
 
 export default function LaunchesList() {
@@ -39,27 +39,29 @@ export default function LaunchesList() {
       >
         <Loading />
       </div>
-      <div className="back-to-top is-hidden button is-success">
-        <span onClick={() => (document.documentElement.scrollTop = 0)}>
-          <i className="fa fa-arrow-up is-size-3" aria-hidden="true"></i>
-        </span>
-      </div>
-      <div className="columns">
-        <div className="column">
-          {launches.map((launch) => (
-            <div key={launch.flight_number} className="py-2 px-2">
-              <LaunchItem
-                flightLogo={launch.links.mission_patch_small}
-                flightNumber={launch.flight_number}
-                missionName={launch.mission_name}
-                missionDate={launch.launch_year}
-                launchSuccess={launch.launch_success}
-              />
-              {(flightNumber = launches.flight_number)}
-            </div>
-          ))}
+      <section className={`${!launches?.length ? 'is-hidden' : 'is-block'}`}>
+        <div className="back-to-top is-hidden button is-success">
+          <span onClick={() => (document.documentElement.scrollTop = 0)}>
+            <i className="fa fa-arrow-up is-size-3" aria-hidden="true"></i>
+          </span>
         </div>
-      </div>
+        <div className="columns">
+          <div className="column">
+            {launches.map((launch) => (
+              <div key={launch.flight_number} className="py-2 px-2">
+                <LaunchItem
+                  flightLogo={launch.links.mission_patch_small}
+                  flightNumber={launch.flight_number}
+                  missionName={launch.mission_name}
+                  missionDate={launch.launch_year}
+                  launchSuccess={launch.launch_success}
+                />
+                {(flightNumber = launches.flight_number)}
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
     </>
   );
 }
