@@ -1,11 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import * as API from '../../services/launches';
 import { useParams, Link, useNavigate } from 'react-router-dom';
-import Gallery from '../shared/gallery/Gallery.component';
-import CustomLink from '../shared/custom-link/CustomLink.component';
 import Rocket from '../rocket/Rocket.component';
 import './LaunchDetails.component.css';
 import DescriptionLaunch from '../description-launch/DescriptionLaunch.component';
+import { CustomLink, Gallery, Loading } from '../shared/shared.module';
 
 export default function LaunchDetails({ ...props }) {
   const { launchId } = useParams();
@@ -71,151 +70,162 @@ export default function LaunchDetails({ ...props }) {
 
   return (
     <>
-      <header className="pl-1 pb-5 header-sticky">
-        <span onClick={() => navigate(-1)}>
-          <i
-            class="fa fa-arrow-left is-size-3"
-            aria-hidden="true"
-            title="Back"
-          ></i>{' '}
-          <span className="is-size-4">Back</span>
-        </span>
-      </header>
-      <section className="card">
-        <div className="card-content">
-          <div className="media-content">
-            <h2 class="title is-3 is-flex is-justify-content-space-between">
-              {launchDetails.mission_name}
-              <small>
-                <span
-                  className={` ${
-                    launchDetails.launch_success
-                      ? 'tag is-success'
-                      : 'tag is-danger'
-                  }`}
-                >
-                  {launchDetails.launch_success ? 'Success' : 'Failure'}
-                </span>
-              </small>
-            </h2>
-            <hr />
-          </div>
-          <div className="card-image">
-            <figure className="image">
-              <img
-                className="is-hidden-desktop"
-                src={links?.mission_patch_small}
-                alt="Patch Launch Image"
-              />
-              <img
-                className="is-hidden-touch"
-                src={links?.mission_patch}
-                alt="Patch Launch Image"
-              />
-            </figure>
-          </div>
-
-          <div className="content mt-5">
-            <div className="tabs is-fullwidth" id="tabs">
-              <ul>
-                <li className="is-active" data-tab="1">
-                  <a>
-                    <span className="icon is-small">
-                      <i class="fa fa-rocket" aria-hidden="true"></i>
-                    </span>
-                    <span>Rocket</span>
-                  </a>
-                </li>
-                <li data-tab="2">
-                  <a>
-                    <span className="icon is-small">
-                      <i class="fa fa-info" aria-hidden="true"></i>
-                    </span>
-                    <span>Details</span>
-                  </a>
-                </li>
-                <li
-                  data-tab="3"
-                  className={`${haveRedditLinks ? 'is-block' : 'is-hidden'}`}
-                >
-                  <a>
-                    <span className="icon is-small">
-                      <i class="fa fa-reddit-alien" aria-hidden="true"></i>
-                    </span>
-                    <span>Reddit</span>
-                  </a>
-                </li>
-                <li
-                  data-tab="4"
-                  className={`${
-                    flickr_images?.length ? 'is-block' : 'is-hidden'
-                  }`}
-                >
-                  <a>
-                    <span className="icon is-small">
-                      <i class="fa fa-picture-o" aria-hidden="true"></i>
-                    </span>
-                    <span>Gallery</span>
-                  </a>
-                </li>
-              </ul>
+      <div
+        className={`${
+          launchDetails ? 'is-hidden' : 'is-block has-text-centered'
+        }`}
+      >
+        <Loading />
+      </div>
+      <section className={`${!launchDetails ? 'is-hidden' : 'is-block'}`}>
+        <header className="pl-1 pb-5 header-sticky">
+          <span onClick={() => navigate(-1)}>
+            <i
+              class="fa fa-arrow-left is-size-3"
+              aria-hidden="true"
+              title="Back"
+            ></i>{' '}
+            <span className="is-size-4">Back</span>
+          </span>
+        </header>
+        <section className="card">
+          <div className="card-content">
+            <div className="media-content">
+              <h2 class="title is-3 is-flex is-justify-content-space-between">
+                {launchDetails.mission_name}
+                <small>
+                  <span
+                    className={` ${
+                      launchDetails.launch_success
+                        ? 'tag is-success'
+                        : 'tag is-danger'
+                    }`}
+                  >
+                    {launchDetails.launch_success ? 'Success' : 'Failure'}
+                  </span>
+                </small>
+              </h2>
+              <hr />
             </div>
-            <div id="tab-content">
-              <section className="is-active" data-content="1">
-                <Rocket rocketInfo={rocket} />
-              </section>
-              <section data-content="2">
-                <DescriptionLaunch
-                  details={details}
-                  failureDetails={launch_failure_details}
-                  wikipedia={wikipedia}
-                  articleLink={article_link}
+            <div className="card-image">
+              <figure className="image">
+                <img
+                  className="is-hidden-desktop"
+                  src={links?.mission_patch_small}
+                  alt="Patch Launch Image"
                 />
-              </section>
-              <section data-content="3" data-name="reddit">
-                <div className="box">
-                  <div className="is-flex is-justify-content-space-between">
-                    <CustomLink
-                      link={reddit_campaign}
-                      name={'Campaign'}
-                      className={`${
-                        reddit_campaign ? 'is-block' : 'is-hidden'
-                      }`}
-                    />
-                    <CustomLink
-                      link={reddit_launch}
-                      name={'Launch'}
-                      className={`${reddit_launch ? 'is-block' : 'is-hidden'}`}
-                    />
+                <img
+                  className="is-hidden-touch"
+                  src={links?.mission_patch}
+                  alt="Patch Launch Image"
+                />
+              </figure>
+            </div>
 
-                    <CustomLink
-                      link={reddit_media}
-                      name={'Media'}
-                      className={`${reddit_media ? 'is-block' : 'is-hidden'}`}
-                    />
+            <div className="content mt-5">
+              <div className="tabs is-fullwidth" id="tabs">
+                <ul>
+                  <li className="is-active" data-tab="1">
+                    <a>
+                      <span className="icon is-small">
+                        <i class="fa fa-rocket" aria-hidden="true"></i>
+                      </span>
+                      <span>Rocket</span>
+                    </a>
+                  </li>
+                  <li data-tab="2">
+                    <a>
+                      <span className="icon is-small">
+                        <i class="fa fa-info" aria-hidden="true"></i>
+                      </span>
+                      <span>Details</span>
+                    </a>
+                  </li>
+                  <li
+                    data-tab="3"
+                    className={`${haveRedditLinks ? 'is-block' : 'is-hidden'}`}
+                  >
+                    <a>
+                      <span className="icon is-small">
+                        <i class="fa fa-reddit-alien" aria-hidden="true"></i>
+                      </span>
+                      <span>Reddit</span>
+                    </a>
+                  </li>
+                  <li
+                    data-tab="4"
+                    className={`${
+                      flickr_images?.length ? 'is-block' : 'is-hidden'
+                    }`}
+                  >
+                    <a>
+                      <span className="icon is-small">
+                        <i class="fa fa-picture-o" aria-hidden="true"></i>
+                      </span>
+                      <span>Gallery</span>
+                    </a>
+                  </li>
+                </ul>
+              </div>
+              <div id="tab-content">
+                <section className="is-active" data-content="1">
+                  <Rocket rocketInfo={rocket} />
+                </section>
+                <section data-content="2">
+                  <DescriptionLaunch
+                    details={details}
+                    failureDetails={launch_failure_details}
+                    wikipedia={wikipedia}
+                    articleLink={article_link}
+                  />
+                </section>
+                <section data-content="3" data-name="reddit">
+                  <div className="box">
+                    <div className="is-flex is-justify-content-space-between">
+                      <CustomLink
+                        link={reddit_campaign}
+                        name={'Campaign'}
+                        className={`${
+                          reddit_campaign ? 'is-block' : 'is-hidden'
+                        }`}
+                      />
+                      <CustomLink
+                        link={reddit_launch}
+                        name={'Launch'}
+                        className={`${
+                          reddit_launch ? 'is-block' : 'is-hidden'
+                        }`}
+                      />
 
-                    <CustomLink
-                      link={reddit_recovery}
-                      name={'Recovery'}
-                      className={`${
-                        reddit_recovery ? 'is-block' : 'is-hidden'
-                      }`}
-                    />
+                      <CustomLink
+                        link={reddit_media}
+                        name={'Media'}
+                        className={`${reddit_media ? 'is-block' : 'is-hidden'}`}
+                      />
+
+                      <CustomLink
+                        link={reddit_recovery}
+                        name={'Recovery'}
+                        className={`${
+                          reddit_recovery ? 'is-block' : 'is-hidden'
+                        }`}
+                      />
+                    </div>
                   </div>
-                </div>
-              </section>
-              <section data-content="4">
-                <Gallery
-                  imagesList={flickr_images}
-                  className={`${
-                    flickr_images?.length ? 'is-block' : 'is-hidden'
-                  }`}
-                />
-              </section>
+                </section>
+                <section data-content="4">
+                  <Gallery
+                    imagesList={flickr_images}
+                    className={`${
+                      flickr_images?.length ? 'is-block' : 'is-hidden'
+                    }`}
+                  />
+                </section>
+              </div>
             </div>
+            {/* Content end */}
           </div>
-          {/* Content end */}
-        </div>
+        </section>
       </section>
     </>
   );

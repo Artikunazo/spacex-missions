@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import LaunchItem from '../launch-item/LaunchItem.component';
 import * as API from '../../services/launches';
+import Loading from '../shared/loading/Loading.component';
 import './LaunchesList.component.css';
 
 export default function LaunchesList() {
@@ -21,17 +22,24 @@ export default function LaunchesList() {
 
   function scrollFunction() {
     if (document.documentElement.scrollTop > 350) {
-      btnGoToTop.classList.add('is-flex');
-      btnGoToTop.classList.remove('is-hidden');
+      btnGoToTop.classList?.add('is-flex');
+      btnGoToTop.classList?.remove('is-hidden');
     } else {
-      btnGoToTop.classList.remove('is-flex');
-      btnGoToTop.classList.add('is-hidden');
+      btnGoToTop.classList?.remove('is-flex');
+      btnGoToTop.classList?.add('is-hidden');
     }
   }
 
   return (
     <>
-      <div className="back-to-top is-hidden">
+      <div
+        className={`${
+          launches?.length ? 'is-hidden' : 'is-block has-text-centered'
+        }`}
+      >
+        <Loading />
+      </div>
+      <div className="back-to-top is-hidden button is-success">
         <span onClick={() => (document.documentElement.scrollTop = 0)}>
           <i className="fa fa-arrow-up is-size-3" aria-hidden="true"></i>
         </span>
