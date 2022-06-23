@@ -22,11 +22,11 @@ export default function LaunchesList() {
 
   function scrollFunction() {
     if (document.documentElement.scrollTop > 350) {
-      btnGoToTop.classList?.add('is-flex');
-      btnGoToTop.classList?.remove('is-hidden');
+      btnGoToTop?.classList?.add('is-flex');
+      btnGoToTop?.classList?.remove('is-hidden');
     } else {
-      btnGoToTop.classList?.remove('is-flex');
-      btnGoToTop.classList?.add('is-hidden');
+      btnGoToTop?.classList?.remove('is-flex');
+      btnGoToTop?.classList?.add('is-hidden');
     }
   }
 
