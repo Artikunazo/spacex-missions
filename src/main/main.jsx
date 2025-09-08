@@ -1,12 +1,13 @@
 import Header from "../components/header/header";
 import Footer from "../components/footer/footer";
+import Launches from "../components/launches/launches";
 
 function Main() {
   return (
     <>
       <Header />
-      <section>
-        <p>Main container</p>
+      <section className="p-4">
+        <Launches />
       </section>
       <Footer />
     </>
